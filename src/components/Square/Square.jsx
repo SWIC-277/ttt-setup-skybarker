@@ -2,11 +2,9 @@ import PropTypes from "prop-types";
 
 export default function Square({ marker, id, handleClick }) {
   return (
-    <div>
-      <button id={id} className="square" type="button" onClick={handleClick}>
-        {marker}
-      </button>
-    </div>
+    <button id={id} className="square" type="button" onClick={handleClick}>
+      {marker}
+    </button>
   );
 }
 
