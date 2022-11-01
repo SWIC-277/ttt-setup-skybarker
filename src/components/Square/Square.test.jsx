@@ -4,24 +4,28 @@ import Square from "./Square";
 
 describe("Square", () => {
   it("render a square with the correct marker and id ('X' or 'O')", () => {
-    render(<Square marker="X" id={0} handleClick={() => {}} />);
+    const ID = 0;
+    const MARKER = "X";
 
-    const square = screen.getByRole("button", { name: "X" });
+    render(<Square marker={MARKER} id={ID} handleClick={() => {}} />);
 
-    expect(square).toHaveAttribute("id", "0");
+    const square = screen.getByRole("button", { name: MARKER });
+
+    expect(square).toHaveAttribute("id", ID.toString());
   });
 
   it("render a square without a marker", () => {
-    render(<Square id={0} handleClick={() => {}} />);
+    const ID = 0;
+    render(<Square id={ID} handleClick={() => {}} />);
 
     const square = screen.getByRole("button");
 
-    expect(square).toHaveAttribute("id", "0");
+    expect(square).toHaveAttribute("id", ID.toString());
   });
 
   it("calls the click handler function whenever clicked", async () => {
     const ID = 1;
-    const handleClick = jest.fn((event) => event.target.id);
+    const handleClick = jest.fn();
     const user = userEvent.setup();
 
     render(<Square id={ID} handleClick={handleClick} />);
@@ -30,6 +34,6 @@ describe("Square", () => {
 
     await user.click(square);
 
-    expect(handleClick.mock.results[0].value).toBe(ID.toString());
+    expect(handleClick).toBeCalled();
   });
 });
