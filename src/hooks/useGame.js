@@ -1,30 +1,5 @@
 import { useReducer } from "react";
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "made_move": {
-      const board2Update = [...state.board];
-
-      if (board2Update[action.index] === null) {
-        board2Update[action.index] = state.turn;
-      }
-
-      return {
-        ...state,
-        board: board2Update,
-        turn: state.turn === "X" ? "O" : "X",
-      };
-    }
-    case "declared_winner": {
-      return {
-        ...state,
-        winner: action.winner,
-      };
-    }
-    default:
-      throw new Error("Invalid Action");
-  }
-}
+import reducer from "./reducer";
 
 export default function useGame() {
   const [state, dispatch] = useReducer(reducer, {
@@ -32,17 +7,15 @@ export default function useGame() {
     turn: "X",
   });
 
-  const makeMove = (index) => {
-    dispatch({ type: "made_move", index });
+  const makeMove = (event) => {
+    dispatch({ type: "made_move", index: event.target.id });
   };
 
-  const declareWinner = (winner) => {
-    dispatch({ type: "declared_winner", winner });
-  };
+  const { board, winner } = state;
 
   return {
-    ...state,
+    board,
+    winner,
     makeMove,
-    declareWinner,
   };
 }
