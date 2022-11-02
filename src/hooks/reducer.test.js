@@ -33,3 +33,19 @@ it("updates the winner after a winning move", () => {
 
   expect(newState.winner).toBe("X");
 });
+
+it("does not update turn on an invalid click", () => {
+  const state = {
+    board: ["X", null, null, null, null, null, null, null, null],
+    turn: "O",
+  };
+
+  const action = {
+    type: "made_move",
+    index: 0,
+  };
+
+  const newState = reducer(state, action);
+
+  expect(newState.turn).toBe("O");
+});
