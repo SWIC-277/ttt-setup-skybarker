@@ -3,13 +3,22 @@ import "./App.css";
 import useGame from "./hooks/useGame";
 
 function App() {
-  const { board, makeMove, winner, turn } = useGame();
+  const { board, winner, makeMove } = useGame();
 
   return (
     <main>
+      <h1>Tic Tac Toe</h1>
+
+      {winner && <p>{winner} Wins!</p>}
+
       <div className="board">
         {board.map((square, index) => (
-          <Square key={index} id={index} handleClick={makeMove} />
+          <Square
+            key={index}
+            id={index}
+            handleClick={makeMove}
+            marker={square}
+          />
         ))}
       </div>
     </main>
