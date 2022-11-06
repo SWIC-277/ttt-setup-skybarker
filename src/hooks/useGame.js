@@ -11,11 +11,16 @@ export default function useGame() {
     dispatch({ type: "made_move", index: event.target.id });
   };
 
+  const reset = (event) => {
+    dispatch({ type: "reset" });
+  };
+
   const { board, winner } = state;
 
   return {
     board,
     winner,
     makeMove,
+    reset,
   };
 }
