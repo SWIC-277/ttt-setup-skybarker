@@ -20,7 +20,7 @@ export default function reducer(state, action) {
       board2Update = Array(9).fill(null);
       return {
         board: board2Update,
-        turn: currentTurn,
+        turn: Math.floor(Math.random() * 2) ? "X" : "O",
       };
     }
 

@@ -3,12 +3,13 @@ import "./App.css";
 import useGame from "./hooks/useGame";
 
 function App() {
-  const { board, winner, makeMove, reset } = useGame();
+  const { board, turn, winner, makeMove, reset } = useGame();
 
   return (
     <main>
       <h1>Tic Tac Toe</h1>
 
+      {!winner && <p>It`s {turn}`s Turn</p>}
       {winner && <p>{winner} Wins!</p>}
 
       <div className="board">

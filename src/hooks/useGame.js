@@ -4,7 +4,7 @@ import reducer from "./reducer";
 export default function useGame() {
   const [state, dispatch] = useReducer(reducer, {
     board: Array(9).fill(null),
-    turn: "X",
+    turn: Math.floor(Math.random() * 2) ? "X" : "O",
   });
 
   const makeMove = (event) => {
@@ -15,10 +15,11 @@ export default function useGame() {
     dispatch({ type: "reset" });
   };
 
-  const { board, winner } = state;
+  const { board, turn, winner } = state;
 
   return {
     board,
+    turn,
     winner,
     makeMove,
     reset,
