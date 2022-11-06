@@ -35,4 +35,7 @@
   .board {
     @apply container grid h-96 w-96 grid-cols-3 grid-rows-3;
   }
+  .resetButton {
+    @apply m-auto my-8 h-10 justify-center rounded-md border-4 border-black text-center  text-2xl;
+  }
 }

@@ -3,7 +3,7 @@ import "./App.css";
 import useGame from "./hooks/useGame";
 
 function App() {
-  const { board, winner, makeMove } = useGame();
+  const { board, winner, makeMove, reset } = useGame();
 
   return (
     <main>
@@ -21,6 +21,9 @@ function App() {
           />
         ))}
       </div>
+      <button className="resetButton" type="submit" onClick={reset}>
+        Reset
+      </button>
     </main>
   );
 }
