@@ -49,3 +49,27 @@ it("does not update turn on an invalid click", () => {
 
   expect(newState.turn).toBe("O");
 });
+
+it("resets the game when the reset button is clicked", () => {
+  const state = {
+    board: ["X", "O", null, null, null, null, null, null, null],
+  };
+
+  const action = {
+    type: "reset",
+  };
+
+  const newState = reducer(state, action);
+
+  expect(newState.board).toBe([
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ]);
+});
