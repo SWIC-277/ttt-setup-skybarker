@@ -27,5 +27,12 @@ describe("App", () => {
     expect(squares[2]).toHaveTextContent("X");
   });
 
-  // TODO: Add test for winner
+  it("displays 'X' as the winner", async () => {
+    const user = userEvent.setup();
+    const clicks = [0, 3, 1, 4, 2];
+    render(<App />);
+    const squares = screen.getAllByRole("button");
+    await Promise.all(clicks.map((click) => user.click(squares[click])));
+    expect(screen.getByText("X Wins!")).toBeInTheDocument();
+  });
 });
